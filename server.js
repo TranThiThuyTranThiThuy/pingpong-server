@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const db = require('./config/db'); // Kết nối MySQL
-const productRoutes = require('./routes/products'); // Import API sản phẩm
+const db = require('./models/db'); // Kết nối MySQL
+const productRoutes = require('./routes/productsRoutes'); // Import API sản phẩm
+const cartRoutes = require("./routes/cartRoutes");
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 // Sử dụng routes từ products.js
 app.use('/api/products', productRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Lắng nghe trên cổng
 const PORT = process.env.PORT || 3000;
